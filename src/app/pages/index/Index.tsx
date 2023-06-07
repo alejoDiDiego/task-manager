@@ -2,14 +2,11 @@ import React, { useEffect } from "react";
 import { useStore } from "../../stores/store";
 import { observer } from "mobx-react-lite";
 import { router } from "../../router/Routes";
+import Task from "../../components/tasks/Task";
 
 const Index = () => {
   const { taskStore } = useStore();
   const { tasks, addTask } = taskStore;
-
-  useEffect(() => {
-    console.log(tasks);
-  }, [tasks]);
 
   return (
     <div className="flex flex-col items-center gap-10 w-[80%]">
@@ -20,10 +17,11 @@ const Index = () => {
         Add Task
       </button>
 
-      <div className="w-full bg-blue-200">
-        {Array.from(tasks).map((t) => (
-          <p key={t[0]}>{t[1].title}</p>
-        ))}
+      <div className="w-full flex flex-col gap-5 items-center">
+        {tasks.map((t) => {
+          console.log(t.id);
+          return <Task key={t.id} task={t} />;
+        })}
       </div>
     </div>
   );

@@ -2,9 +2,9 @@ interface Task {
   id: number;
   title: string;
   content: string;
-  creationDate: number;
+  creationDate: Date;
   finishedDate: Date | null;
-  finished: false;
+  finished: boolean;
 }
 
 interface TaskForm {

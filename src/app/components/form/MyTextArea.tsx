@@ -1,19 +1,19 @@
 import React from "react";
-import { Field, useField } from "formik";
+import { useField } from "formik";
 
 interface Props {
   placeholder: string;
   name: string;
+  rows: number;
   label?: string;
-  type?: string;
 }
 
-export default function MyTextInput(props: Props) {
+export default function MyTextAreaInput(props: Props) {
   const [field, meta] = useField(props.name);
   return (
     <div className="flex flex-col w-full">
       <label>{props.label}</label>
-      <input
+      <textarea
         className="rounded-lg shadow-sm shadow-white p-2 font-bold"
         {...field}
         {...props}
