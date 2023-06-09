@@ -7,7 +7,7 @@ import NotFound from "../pages/not-found/NotFound";
 
 export const routes: RouteObject[] = [
   {
-    path: "https://task-manager-sigma-ten.vercel.app/",
+    path: "/task-manager/",
     element: <App />,
     children: [
       { path: "", element: <Index /> },
