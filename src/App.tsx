@@ -19,7 +19,7 @@ function App() {
 
       <nav className="bg-blue-600 h-16 w-full shadow shadow-blue-500 flex justify-center items-center">
         <h2
-          onClick={() => router.navigate("/task-manager/")}
+          onClick={() => router.navigate("/")}
           className="text-3xl font-bold text-white hover:text-slate-300 transition-all cursor-pointer"
         >
           Task Manager

@@ -11,7 +11,7 @@ const Index = () => {
     <div className="flex flex-col items-center gap-10 w-[80%]">
       <button
         className="bg-blue-500 text-white p-4 rounded-2xl font-bold transition-all shadow shadow-blue-500 hover:bg-black hover:shadow-black text-lg"
-        onClick={() => router.navigate("/task-manager/create")}
+        onClick={() => router.navigate("create")}
       >
         Add Task
       </button>

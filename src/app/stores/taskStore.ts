@@ -31,7 +31,7 @@ export default class TaskStore {
 
     localStorage.setItem("tasks", JSON.stringify(this.tasks));
     console.log(JSON.parse(localStorage.getItem("tasks")!));
-    router.navigate("/task-manager/");
+    router.navigate("/");
     toast.success("Task created");
   };
 
@@ -90,7 +90,7 @@ export default class TaskStore {
         this.setLoading(false);
         return;
       }
-      router.navigate("/task-manager/not-found");
+      router.navigate("not-found");
       this.setLoading(false);
       toast.error("Task does not exists");
     });
@@ -105,7 +105,7 @@ export default class TaskStore {
       this.tasks[index] = t;
       console.log(this.tasks);
       localStorage.setItem("tasks", JSON.stringify(this.tasks));
-      router.navigate("/task-manager/");
+      router.navigate("/");
       toast.success("updateTask updated");
       return;
     }
