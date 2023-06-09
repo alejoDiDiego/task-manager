@@ -7,7 +7,7 @@ import NotFound from "../pages/not-found/NotFound";
 
 export const routes: RouteObject[] = [
   {
-    path: "/task-manager/",
+    path: "/",
     element: <App />,
     children: [
       { path: "", element: <Index /> },
