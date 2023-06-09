@@ -1,4 +1,8 @@
-import { RouteObject, createBrowserRouter } from "react-router-dom";
+import {
+  RouteObject,
+  createBrowserRouter,
+  createHashRouter,
+} from "react-router-dom";
 import App from "../../App";
 import Index from "../pages/index/Index";
 import Create from "../pages/create/Create";
@@ -19,4 +23,4 @@ export const routes: RouteObject[] = [
   },
 ];
 
-export const router = createBrowserRouter(routes);
+export const router = createHashRouter(routes);
