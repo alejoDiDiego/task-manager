@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useStore } from "../../stores/store";
 import { useParams } from "react-router-dom";
 import { observer } from "mobx-react-lite";
@@ -10,8 +10,7 @@ import MyTextAreaInput from "../../components/form/MyTextArea";
 
 const Edit = () => {
   const { taskStore } = useStore();
-  const { loadTask, tasks, selectedTask, loadingTask, updateTask, setLoading } =
-    taskStore;
+  const { loadTask, tasks, selectedTask, loadingTask, updateTask } = taskStore;
 
   const [task, setTask] = useState<TaskForm>({
     content: "",
@@ -58,7 +57,7 @@ const Edit = () => {
       initialValues={task}
       onSubmit={(values) => handleSubmit(values)}
     >
-      {({ handleSubmit, isValid, isSubmitting }) => (
+      {({ handleSubmit, isSubmitting }) => (
         <form
           className="bg-blue-500 flex flex-col rounded-lg items-center gap-5 p-5 w-[90%] shadow-md shadow-blue-500 drop-shadow-xl
           sm:w-[400px]"

@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useStore } from "../../stores/store";
 import { observer } from "mobx-react-lite";
 import { router } from "../../router/Routes";
@@ -6,7 +5,7 @@ import Task from "../../components/tasks/Task";
 
 const Index = () => {
   const { taskStore } = useStore();
-  const { tasks, addTask } = taskStore;
+  const { tasks } = taskStore;
 
   return (
     <div className="flex flex-col items-center gap-10 w-[80%]">
