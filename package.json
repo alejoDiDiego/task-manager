@@ -1,5 +1,6 @@
 {
   "name": "task-manager",
+  "homepage": "https://alejodidiego.github.io/task-manager/",
   "private": true,
   "version": "0.0.0",
   "type": "module",

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import * as Yup from "yup";
-import { Task, TaskForm } from "../../models/Task";
+import { TaskForm } from "../../models/Task";
 import { Formik } from "formik";
 import { useStore } from "../../stores/store";
 import { observer } from "mobx-react-lite";
@@ -9,9 +9,9 @@ import MyTextAreaInput from "../../components/form/MyTextArea";
 
 const Create = () => {
   const { taskStore } = useStore();
-  const { tasks, addTask } = taskStore;
+  const { addTask } = taskStore;
 
-  const [task, setTask] = useState<TaskForm>({
+  const [task] = useState<TaskForm>({
     content: "",
     title: "",
   });
@@ -32,7 +32,7 @@ const Create = () => {
       initialValues={task}
       onSubmit={(values) => handleSubmit(values)}
     >
-      {({ handleSubmit, isValid, isSubmitting }) => (
+      {({ handleSubmit, isSubmitting }) => (
         <form
           className="bg-blue-500 flex flex-col rounded-lg items-center gap-5 p-5 w-[90%] shadow-md shadow-blue-500 drop-shadow-xl
           sm:w-[400px]"
