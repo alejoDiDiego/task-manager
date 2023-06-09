@@ -1,8 +1,4 @@
-import {
-  RouteObject,
-  createBrowserRouter,
-  createHashRouter,
-} from "react-router-dom";
+import { RouteObject, createHashRouter } from "react-router-dom";
 import App from "../../App";
 import Index from "../pages/index/Index";
 import Create from "../pages/create/Create";
