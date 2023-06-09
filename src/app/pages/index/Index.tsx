@@ -11,13 +11,13 @@ const Index = () => {
   return (
     <div className="flex flex-col items-center gap-10 w-[80%]">
       <button
-        className="bg-blue-500 text-white p-4 rounded-md font-bold shadow shadow-blue-500 "
+        className="bg-blue-500 text-white p-4 rounded-2xl font-bold transition-all shadow shadow-blue-500 hover:bg-black hover:shadow-black text-lg"
         onClick={() => router.navigate("/task-manager/create")}
       >
         Add Task
       </button>
 
-      <div className="w-full flex flex-col gap-5 items-center">
+      <div className="w-full flex flex-col gap-7 items-center">
         {tasks.map((t) => {
           console.log(t.id);
           return <Task key={t.id} task={t} />;

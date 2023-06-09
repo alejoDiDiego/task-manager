@@ -15,9 +15,8 @@ function App() {
 
   return (
     <div className="">
-      <div>
-        <Toaster />
-      </div>
+      <Toaster />
+
       <nav className="bg-blue-600 h-16 w-full shadow shadow-blue-500 flex justify-center items-center">
         <h2
           onClick={() => router.navigate("/task-manager/")}

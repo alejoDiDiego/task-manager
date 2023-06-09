@@ -1,10 +1,12 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { Task, TaskForm } from "../models/Task";
 import { router } from "../router/Routes";
-import { toast } from "react-hot-toast/headless";
+import { toast } from "react-hot-toast";
 
 export default class TaskStore {
   tasks: Task[] = [];
+  loadingTask = false;
+  selectedTask: Task | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -44,6 +46,7 @@ export default class TaskStore {
         console.log(this.tasks);
       });
     }
+    return;
   };
 
   finishOrUnfinishTask = async (id: number) => {
@@ -59,7 +62,9 @@ export default class TaskStore {
       this.tasks[index] = t;
       console.log(this.tasks);
       localStorage.setItem("tasks", JSON.stringify(this.tasks));
+      return;
     }
+    toast.error("Task does not exists");
   };
 
   deleteTask = (id: number) => {
@@ -67,5 +72,47 @@ export default class TaskStore {
     this.tasks = this.tasks.filter((x) => x.id != id);
     console.log(this.tasks);
     localStorage.setItem("tasks", JSON.stringify(this.tasks));
+    toast.success("Task deleted");
+  };
+
+  loadTask = async (id: number) => {
+    this.setLoading(true);
+    if (this.tasks.length == 0) {
+      console.log("loading");
+      await this.loadTasks();
+    }
+    runInAction(() => {
+      console.log(this.tasks);
+      const t = this.tasks.find((ts) => ts.id == id);
+      if (t != null) {
+        console.log(t);
+        this.selectedTask = t;
+        this.setLoading(false);
+        return;
+      }
+      router.navigate("/task-manager/not-found");
+      this.setLoading(false);
+      toast.error("Task does not exists");
+    });
+  };
+
+  updateTask = async (task: TaskForm) => {
+    const t = this.tasks.find((x) => x.id == task.id);
+    if (t != null) {
+      const index = this.tasks.findIndex((x) => x.id == task.id);
+      t.content = task.content;
+      t.title = task.title;
+      this.tasks[index] = t;
+      console.log(this.tasks);
+      localStorage.setItem("tasks", JSON.stringify(this.tasks));
+      router.navigate("/task-manager/");
+      toast.success("updateTask updated");
+      return;
+    }
+    toast.error("Task does not exists");
+  };
+
+  setLoading = (value: boolean) => {
+    this.loadingTask = value;
   };
 }

@@ -10,6 +10,7 @@ interface Task {
 interface TaskForm {
   title: string;
   content: string;
+  id?: number;
 }
 
 export type { Task, TaskForm };

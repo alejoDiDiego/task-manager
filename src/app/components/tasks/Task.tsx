@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Task } from "../../models/Task";
 import { useStore } from "../../stores/store";
 import { observer } from "mobx-react-lite";
+import { router } from "../../router/Routes";
 
 interface Props {
   task: Task;
@@ -13,20 +14,20 @@ const Task = ({ task }: Props) => {
 
   return (
     <div
-      className={`flex flex-col gap-5 justify-between items-center bg-blue-400 rounded-md p-5 shadow-md shadow-blue-400 text-center md:text-left w-full md:w-[800px] transition-all duration-300 ${
+      className={`flex flex-col gap-5 justify-between items-center bg-blue-400 rounded-2xl p-5 shadow-md shadow-blue-400 text-center md:text-left w-full md:w-[500px] transition-all duration-300 ${
         task.finished ? "opacity-50" : ""
       }`}
     >
-      <div className="flex flex-col gap-3 md:gap-3 md:flex-row justify-between items-center w-full">
+      <div className="flex flex-col gap-3 md:gap-3  justify-between items-center w-full">
         <p
-          className={`text-white font-bold text-2xl w-64 break-words ${
+          className={`text-white font-bold text-2xl md:text-3xl text-center w-64 md:w-full break-words ${
             task.finished ? "line-through" : ""
           }`}
         >
           {task.title}
         </p>
         <p
-          className={`md:w-72 break-words w-full bg-white p-3 rounded-lg shadow shadow-white ${
+          className={`md:mb-3 break-words w-full bg-white p-3 rounded-lg shadow shadow-white ${
             task.finished ? "line-through" : ""
           }`}
         >
@@ -40,13 +41,19 @@ const Task = ({ task }: Props) => {
                 deleteTask(task.id);
               }
             }}
-            className="fa-solid fa-trash text-red-500 mr-2 text-lg bg-black px-3 py-[5.5px] rounded-lg shadow shadow-slate-950 cursor-pointer transition-all hover:bg-slate-600 hover:shadow-slate-600"
+            className="fa-solid fa-trash text-red-500 mr-2 text-lg bg-black px-3 py-[5.5px] rounded-full shadow shadow-slate-950 cursor-pointer transition-all hover:bg-slate-600 hover:shadow-slate-600"
+          ></i>
+          <i
+            onClick={() => {
+              router.navigate(`edit/${task.id}`);
+            }}
+            className="fa-solid fa-pen-to-square text-green-400 mr-2 text-lg bg-black px-3 py-[5.5px] rounded-full shadow shadow-slate-950 cursor-pointer transition-all hover:bg-slate-600 hover:shadow-slate-600"
           ></i>
           <button
             onClick={() => {
               finishOrUnfinishTask(task.id);
             }}
-            className={`bg-slate-950 text-white p-2 font-bold rounded-lg  shadow shadow-slate-950 w-28 transition-all hover:bg-slate-600 hover:shadow-slate-600 ${
+            className={`bg-slate-950 text-white p-2 font-bold rounded-full  shadow shadow-slate-950 w-28 transition-all hover:bg-slate-600 hover:shadow-slate-600 ${
               task.finished ? "line-through" : ""
             }`}
           >
@@ -74,6 +81,7 @@ const Task = ({ task }: Props) => {
             {new Date(task.finishedDate).getFullYear()}{" "}
             {new Date(task.finishedDate).getHours()}
             {":"}
+            {new Date(task.finishedDate).getMinutes() < 10 ? "0" : ""}
             {new Date(task.finishedDate).getMinutes()}
           </p>
         ) : null}
